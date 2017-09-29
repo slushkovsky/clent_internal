@@ -1,0 +1,49 @@
+<div layout="column">
+	<div layout="column" ng-repeat="problem in problems"> 
+		<div layout="row">
+			<md-input-container class="md-block" flex="5"> 
+				<input value="{{ $index + 1 }}." disabled>	
+			</md-input-container>
+
+			<md-input-container class="md-block" flex="30"> 
+				<input ng-model="problem.title" placeholder="Название">
+			</md-input-container>
+
+			<md-input-container class="md-block" flex="20"> 
+				<md-select ng-model="problem.category" placeholder="Категория">
+					<md-option value="{{ category }}" ng-repeat="category in issuesCategories">{{ category }}</md-option>
+				</md-select>
+			</md-input-container>
+
+			<md-input-container class="md-block" flex="20"> 
+				<md-select ng-model="problem.criticality" placeholder="Критичность">
+					<md-option value="Высокая">Высокая</md-option>
+					<md-option value="Средняя">Средняя</md-option>
+					<md-option value="Низкая">Низкая</md-option>
+				</md-select>
+			</md-input-container>
+
+			<md-button flex="5" ng-click="problems.splice($index, 1);"><md-icon>close</md-icon></md-button>
+		</div>
+
+		<div layout="row"> 
+			<md-input-container md-no-float class="md-block" flex="30" flex-offset="5" style="margin-top: 0;">
+    			<textarea ng-model="problem.content" rows="3" md-select-on-focus placeholder="Описание"></textarea>
+    		</md-input-container>
+
+    		<choose-file layout="row" flex="20" file-model="problem.imgSrc">
+				<input id="fileInput" type="file" class="ng-hide">
+				<md-input-container flex class="md-block">
+					<input type="text" placeholder="Screenshot" ng-model="_fileName" disabled>
+					<div class="hint">Select your file</div>
+				</md-input-container>
+				<div>
+					<md-button id="uploadButton" class="md-fab md-mini">
+						<md-icon class="material-icons">attach_file</md-icon>
+					</md-button>
+				</div>
+			</choose-file>  
+		</div>
+	</div>
+</div>
+<md-button class="md-raised" ng-click="problems.push({})">Add</md-button>

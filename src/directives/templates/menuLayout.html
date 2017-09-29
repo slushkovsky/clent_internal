@@ -1,0 +1,36 @@
+<md-sidenav 
+    class="md-sidenav-left" 
+    md-is-locked-open="$mdMedia('gt-md')" 
+    flex-gt-md="20" 
+    md-component-id="left"
+    style="background-color: {{ brand.color }};"/>
+    
+    <md-toolbar>
+        <img ng-src="{{ brand.logo }}" id="logo" alt="logo" /> 
+    </md-toolbar>
+    <md-content layout-padding layout="column">
+        <menu-item 
+            icon="{{ item.img }}" 
+            name="{{ item.name }}" 
+            active="{{ item.active }}" 
+            href="{{ item.path }}"
+            ng-repeat="item in views | filter: {active: true}"></menu-item>
+
+        <md-divider></md-divider>
+
+        <menu-item 
+            icon="{{ item.img }}" 
+            name="{{ item.name }}" 
+            active="{{ item.active }}"
+            href="{{ item.path }}" 
+            ng-repeat="item in views | filter: {active: false}"></menu-item>
+    </md-content>
+</md-sidenav>
+
+<div flex-gt-md="80" flex="100" style="min-height: 100%;" layout="column"> 
+    <md-button ng-click="toggleLeft()" class="md-primary" id="menu-toggler" hide-gt-md>
+        <md-icon>menu</md-icon>
+    </md-button>
+
+    <ng-transclude></ng-transclude>
+</div>

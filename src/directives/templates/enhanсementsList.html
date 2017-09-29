@@ -1,0 +1,24 @@
+<div layout="column">
+	<div layout="column" ng-repeat="enhancement in docData.siteAnalyse.enhancements"> 
+		<div layout="row">
+			<md-input-container class="md-block" flex="5"> 
+				<input value="{{ $index + 1 }}." disabled>	
+			</md-input-container>
+
+			<md-input-container class="md-block" flex="30"> 
+				<input ng-model="enhancement.title" placeholder="Название">
+			</md-input-container>
+
+    		<md-button flex="5" ng-click="docData.siteAnalyse.enhancement.splice($index, 1);"><md-icon>close</md-icon></md-button>
+    	</div>
+
+    	<div layout="row"> 
+			<md-input-container md-no-float class="md-block" flex="30" flex-offset="5" style="margin-top: 0;">
+    			<textarea ng-model="enhancement.content" rows="3" md-select-on-focus placeholder="Описание"></textarea>
+    		</md-input-container>
+
+    		<choose-file layout="row" flex="20" file-model="enhancement.imgSrc" placeholder="Screenshot"></choose-file>  
+		</div>
+	</div>
+</div>
+<md-button class="md-raised" ng-click="docData.siteAnalyse.enhancements.push({})">Add</md-button>

@@ -1,0 +1,22 @@
+<div layout="row"> 
+	<md-input-container md-no-float class="md-block" flex="30">
+	    <input ng-model="modelName" placeholder="Project name">
+	</md-input-container>
+
+	<md-input-container md-no-float class="md-block" flex="30">
+      <md-datepicker ng-model="modelDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+    </md-input-container>	
+
+	<choose-file layout="row" flex="25" model-file="modelLogoSrc" placeholder="Logo file"></choose-file>    
+</div>
+<!-- 
+<page id="title"> 
+	<img src="{{ docData.logoSrc }}"> 
+
+	<h1 ng-bind-html="docData.projectName | unsafe"></h1>
+	<h2 ng-bing-html="docData.documentName | unsafe"></h2>
+
+	<div id="date">
+		{{ docData.date | date: 'dd.MM.yyyy'}}
+	</div>
+</page> -->

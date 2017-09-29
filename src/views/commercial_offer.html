@@ -1,0 +1,266 @@
+<md-content class="editor">
+    <section> 
+	    <h1>Общая информация</h1>
+
+	    <doc-title model-name="docData.projectName" model-date="docData.date" model-logo-src="docData.logoSrc"></doc-title>
+    </section>
+
+    <section> 
+		<h1>Задача и требования</h1>
+
+		<md-input-container class="md-block">
+		    <textarea ng-model="docData.commercialOffer.order" rows="10" md-select-on-focus></textarea>
+		</md-input-container>
+
+		<h2>Требования</h2>
+		<div layout="row" layout-wrap>
+			<div flex="33" layout="column" layout-padding ng-repeat="demand in docData.commercialОffer.demands">
+				<div layout="row"> 
+					<md-input-container class="md-block" flex="5"> 
+						<input value="{{ $index + 1 }}." disabled>	
+					</md-input-container>
+					<md-input-container class="md-block" flex="90"> 
+						<input ng-model="demand.title" placeholder="Название">
+					</md-input-container>
+					<md-button flex="5" ng-click="docData.demands.splice($index, 1);"><md-icon>close</md-icon></md-button>
+				</div>
+				<md-input-container md-no-float class="md-block">
+	    			<textarea ng-model="demand.content" rows="5" md-select-on-focus placeholder="Текст требования"></textarea>
+	    		</md-input-container>
+	    	</div>
+	    </div>
+		<md-button class="md-raised" ng-click="docData.demands.push({})">Add</md-button>
+	</section>
+
+	<section> 
+		<h1>Оценка</h1>
+
+		<estimate-editor model-estimate="docData.commercialОffer.estimate"></estimate-editor>
+	</section>
+
+	<section> 
+		<h1>Сроки</h1>
+
+		<h2>Timeline</h2>
+<!-- 		<div layout="column">
+			<div layout="row" ng-repeat="ev in docData.timeline"> 
+				<md-input-container> 
+					<md-icon>{{ $index + 1 }}</md-icon>
+					<input ng-model="ev.name" placeholder="Название">
+				</md-input-container>
+
+				<md-input-container> 
+					<md-datepicker ng-model="ev.begin" md-placeholder="Начало" md-open-on-focus></md-datepicker>
+				</md-input-container>
+
+				<md-input-container> 
+					<md-datepicker ng-model="ev.end" md-placeholder="Конец" md-open-on-focus></md-datepicker>
+				</md-input-container>
+			</div> 
+		</div>
+		<md-button class="md-raised" ng-click="docData.timeline.push({})">Add</md-button> -->
+
+		<choose-file layout="row" flex="25" model-file="docData.commercialОffer.timelineSrc" placeholder="Timeline file"></choose-file> 
+
+		<h2>Демо</h2>
+		<div layout="row">
+			<div layout="column" ng-repeat="demo in docData.commercialОffer.demos" flex="33" layout-wrap layout-padding> 
+				<div layout="row"> 
+					<md-input-container flex="5">
+						<input value="{{ $index + 1 }}." disabled>
+					</md-input-container>
+
+					<md-input-container flex="50"> 
+						<input ng-model="demo.title" placeholder="Название">
+					</md-input-container>
+
+					<md-input-container flex="40"> 
+						<md-datepicker ng-model="demo.date" md-placeholder="Дата" md-open-on-focus></md-datepicker>
+					</md-input-container>
+
+					<md-button flex="5" ng-click="docData.demos.splice($index, 1);"><md-icon>close</md-icon></md-button>
+				</div>
+
+				<md-input-container> 
+					<textarea ng-model="demo.description" placeholder="Описание"></textarea>
+				</md-input-container>
+			</div> 
+		</div>
+		<md-button class="md-raised" ng-click="docData.demos.push({})">Add</md-button>
+
+		<h2>График оплаты</h2>
+		<div layout="column">
+			<div layout="row" ng-repeat="payment in docData.commercialОffer.payments"> 
+				<md-input-container flex="5"> 
+					<input value="{{ $index + 1 }}." disabled> 
+				</md-input-container>
+
+				<md-input-container flex="40"> 
+					<input ng-model="payment.name" placeholder="Название">
+				</md-input-container>
+
+				<md-input-container flex="10"> 
+					<input ng-model="payment.amount" placeholder="Размер (%)" type="number" step="5" min="5" max="100">
+				</md-input-container>
+
+				<md-button flex="5" ng-click="docData.payments.splice($index, 1);"><md-icon>close</md-icon></md-button>
+			</div> 
+		</div>
+		<md-button class="md-raised" ng-click="docData.payments.push({})">Add</md-button>
+	</section>
+
+	<section> 
+		<h1>Команда</h1>
+
+		<div layout="row" layout-wrap ng-init="values={};">
+			<md-card md-theme="default" md-theme-watch ng-repeat="member in docData.commercialОffer.team">
+	        	<md-card-title>
+	         		<md-card-title-text>
+	 					<div layout="column" flex="100" class="flex flex-col">
+	 						<md-input-container> 
+	 							<input placeholder="Имя" ng-model="member.name">			 							
+	 						</md-input-container>
+
+							<md-input-container> 
+	 							<input placeholder="Роль" ng-model="member.title">			 							
+	 						</md-input-container>
+
+	 						<md-input-container> 
+	 							<input placeholder="Phone" ng-model="member.phone">
+	 						</md-input-container>
+
+	 						<md-input-container> 
+	 							<input placeholder="Email" ng-model="member.email">
+	 						</md-input-container>
+
+							<choose-file layout="row" flex="25" file-model="member.photoSrc">
+								<input id="fileInput" type="file" class="ng-hide">
+								<md-input-container flex class="md-block">
+									<input type="text" placeholder="Photo" disabled>
+									<div class="hint">Select your file</div>
+								</md-input-container>
+								<div>
+									<md-button id="uploadButton" class="md-fab md-mini">
+										<md-icon class="material-icons">attach_file</md-icon>
+									</md-button>
+								</div>
+							</choose-file>
+	 					</div>           		
+	          		</md-card-title-text>
+	       		</md-card-title>
+	        	<md-card-actions layout="row" layout-align="end center">
+	          		<md-button ng-click="">Delete</md-button>
+	        	</md-card-actions>
+	      </md-card>
+		</div>
+		<md-button class="md-raised" ng-click="docData.team.push({})">Add</md-button>	
+
+		<div layout="row"> 
+			<div flex="50"> 
+				<md-input-container class="md-block">
+				    <textarea ng-model="docData.contactDetails" rows="5" md-select-on-focus placeholder="Детали контактов">	 
+				    {{ docData.contactDetails }}   	
+				    </textarea>
+				</md-input-container>
+			</div>
+			<md-input-container flex="50" class="md-block">
+			    <textarea ng-model="docData.companyInfo" rows="5" md-select-on-focus placeholder="Описание компании">	
+			    {{ docData.companyInfo }}	    	
+			    </textarea>
+			</md-input-container>
+		</div>		
+	</section>
+
+	<btn-generate></btn-generate>
+</md-content>
+
+<div class="view">
+	<page id="title"> 
+		<img src="{{ docData.logoSrc }}"> 
+
+		<h1 ng-bind-html="docData.projectName | unsafe"></h1>
+		<h2 ng-bind-html="docData.documentName | unsafe"></h2>
+
+		<div id="date">
+			{{ docData.date | date: 'dd.MM.yyyy'}}
+		</div>
+	</page>
+
+	<page> 
+		<h1>Задача</h1>
+
+		<div ng-bind-html="docData.commercialOffer.order | unsafe"></div>
+	</page>
+
+	<page id="demands" ng-show="docData.commercialОffer.demands.length > 0"> 
+		<h1>Требования</h1>
+
+		<div class="demand-item" ng-repeat="demand in docData.commercialОffer.demands"> 
+			<h3>{{ demand.title }}</h3>
+
+			<div ng-bind-html="demand.content | unsafe"></div>
+		</div>
+	</page>
+
+	<page id="moqups" ng-show="docData.commercialОffer.moqups.length > 0"> 
+		<h1>Макеты</h1>
+
+		<div class="moqup-item" style="text-align: center; width: 30%;" ng-repeat="moqup in docData.commercialОffer.moqups"> 
+			<img ng-src="{{ moqup.src }}" style="width: 100%; margin-bottom: 1rem;"> 
+			{{ moqup.name }}
+		</div>
+	</page>
+
+	<page id="pricing"> 
+		<h1>Стоимость работ</h1>
+
+		<estimate-view estimate="docData.commercialOffer.estimate"></estimate-view>
+	</page>
+
+	<page id="timeline"> 
+		<h1>График работ и оплаты</h1>
+
+		<div style="width: 100%; text-align: center; margin-bottom: 1.5rem;" ng-show="docData.commercialOffer.timelineSrc">
+			<img ng-src="{{ docData.commercialOffer.timelineSrc }}" style="width: 90%;">
+		</div> 
+
+		<div ng-show="docData.commercialOffer.demos.length > 0"> 
+			<h3>Реперные точки</h3>
+			Контроль за проектом в течение разработки возможен в «реперных» точках:
+			<ol> 
+				<li class="deadline-item" ng-repeat="demo in docData.commercialОffer.demos"> 
+					<span class="date">{{ demo.date | date: 'MMM d' }}</span>, <span class="title">{{ demo.title }}</span><br>
+					<span class="description">{{ demo.description }}</span>
+				</li>
+			</ol>
+		</div>
+
+		<div ng-show="docData.commercialОffer.payments.length > 0"> 
+			<h3>Оплата</h3>
+
+			<table> 
+				<tbody>
+					<tr ng-repeat="payment in docData.commercialОffer.payments"><td>{{ payment.name }}</td><td>{{ payment.amount }}%</td></tr> 
+				</tbody>
+			</table>
+		</div>
+	</page>
+
+	<page id="project-team"> 
+		<h1>Проектная группа</h1>
+
+		<div id="team-members">
+			<div class="member-item" ng-repeat="member in docData.commercialОffer.team"> 
+				<img src="{{ member.photoSrc }}">
+				<div><b>{{ member.name }}</b></div>
+				<div ng-show="member.title">{{ member.title }}</div>
+				<div ng-show="member.phone">{{ member.phone }}</div>
+				<div ng-show="member.vk"><a href="http://{{ member.vk }}">{{ member.vk }}</a></div>
+				<div ng-show="member.email">{{ member.email }}</div>
+			</div> 
+		</div> 
+		<div id="always-online" ng-bind-html="docData.commercialОffer.contactDetails | unsafe"></div>
+		<img ng-src="{{ docData.logoSrc }}"/>
+		<div id="company-info" ng-bind-html="docData.commercialОffer.companyInfo | unsafe"></div>
+	</page> 
+</div>

@@ -1,0 +1,19 @@
+<md-menu>
+	<md-button ng-click="$mdOpenMenu($event)" flex="10" flex-offset="45" style="margin-top: 2rem; margin-bottom: 2rem;" class="md-fab">
+		<md-icon>play_arrow</md-icon>
+	</md-button>
+	<md-menu-content>
+		<md-menu-item>
+			<md-button ng-click="generatePDF()">
+				<md-icon>picture_as_pdf</md-icon>
+				PDF
+			</md-button>
+		</md-menu-item>
+		<md-menu-item> 
+			<md-button ng-click="generateDoc()"> 
+				<md-icon>web_asset</md-icon>
+				WEB
+			</md-button>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>	

@@ -1,0 +1,192 @@
+<!DOCTYPE html> 
+
+<html ng-app="contractApp"> 
+	<head> 
+		<meta charset="utf-8">
+		<link rel="icon" href="clent.png"> 
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" media="all">
+
+		<title>Редактор договоров - Clent</title>
+
+		<style> 
+		.shape {    
+			border-style: solid; 
+			border-width: 0 70px 40px 0; 
+			float: right; 
+			height: 0px; 
+			width: 0px;
+			-ms-transform: rotate(360deg); /* IE 9 */
+			-o-transform: rotate(360deg);  /* Opera 10.5 */
+			-webkit-transform: rotate(360deg); /* Safari and Chrome */
+			transform: rotate(360deg);
+		}
+
+		.shape-text{
+		    color: #fff; 
+		    font-size: 12px; 
+		    font-weight: bold; 
+		    position: relative; 
+		    right: -40px; 
+		    top: 2px; 
+		    white-space: nowrap;
+			-ms-transform: rotate(30deg); /* IE 9 */
+			-o-transform: rotate(360deg);  /* Opera 10.5 */
+			-webkit-transform: rotate(30deg); /* Safari and Chrome */
+			transform: rotate(30deg);
+		}
+
+		.project {
+		    min-height: 300px;
+		    height: auto;
+		}
+
+		.project{
+		    background: #fff; 
+		    /*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);*/
+		    border-color: #eee;
+		    border-radius: 2px; 
+		    border-width: .5px;
+		    border-style: solid;
+		    margin: 15px 0; 
+		    overflow: hidden;
+		}
+
+		.project-radius{
+		    border-radius: 7px;
+		}
+
+		.project-default { 
+			border-color: #999999; 
+		}
+		.project-default .shape{
+			border-color: transparent #999999 transparent transparent;
+			border-color: rgba(255,255,255,0) #999999 rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+
+		.project-danger {    
+			border-color: #d9534f; 
+		}
+		.project-danger .shape{
+			border-color: transparent #d9534f transparent transparent;
+			border-color: rgba(255,255,255,0) #d9534f rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+
+		.project-success {	
+			border-color: #5cb85c; 
+		}
+		.project-success .shape{
+			border-color: transparent #5cb85c transparent transparent;
+			border-color: rgba(255,255,255,0) #5cb85c rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+
+		.project-primary {	
+			border-color: #428bca;
+		}
+		.project-primary .shape{
+			border-color: transparent #428bca transparent transparent;
+			border-color: rgba(255,255,255,0) #428bca rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+
+		.project-info {	
+			border-color: #5bc0de; 
+		}
+		.project-info .shape{
+			border-color: transparent #5bc0de transparent transparent;
+			border-color: rgba(255,255,255,0) #5bc0de rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+
+		.project-warning {	
+			border-color: #f0ad4e; 
+		}
+		.project-warning .shape{
+			border-color: transparent #f0ad4e transparent transparent;
+			border-color: rgba(255,255,255,0) #f0ad4e rgba(255,255,255,0) rgba(255,255,255,0);
+		}
+		.project-content {
+		    padding: 0 2rem 2rem;
+		}
+		</style>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+
+		<script> 
+			angular.module('contractApp', ['ngRoute'])
+                .config(function($routeProvider) {
+                    $routeProvider
+                    	.when('/', {
+                    		controller: 'menuCtrl',
+                    		templateUrl: 'menu.html'
+                    	})
+                        .when('/:projectName/:docName', {
+                        	templateUrl: function(urlattr) {
+                        		console.log(`projects/${urlattr.projectName}/${urlattr.docName}.html`);
+                        		return `projects/${urlattr.projectName}/${urlattr.docName}.html`;
+            				},     
+                        	controller: 'contractCtrl'
+                        })
+                        .otherwise({
+                        	redirectTo:'/'
+                        });
+                })
+                .controller('menuCtrl', function($scope) {
+                    $scope.projects = [
+                    	{
+                    		name: 'A1',
+                    		descr: 'Красная поляна',
+                    		primary: true
+                    	},
+                    	{
+                    		name: 'AVAPAY',
+                    		descr: 'Эквайринг для крипто-оплаты'
+                    	}
+                    ];
+                })
+        </script>
+
+        <script type="text/ng-template" id="menu.html">
+		   <div style="height: 100vh; background-image: url(https://pbs.twimg.com/media/DB3owC2UwAEQB-1.jpg:large); background-position: -100px 0;"> 
+				<div class="text-center" class="w-100 pb-5"> 
+					<img src="clent.png" width="15%" class="mb-3 mt-5"> 
+				</div> 
+
+				<div class="container mt-3" style="background-color: white;">
+					<div ng-controller="menuCtrl">
+						<div class="row"> 
+							<div class="col-3" ng-repeat="item in projects">
+								<a ng-href="#/{{item.name}}/contract"> 
+									<div class="project project-default" ng-class="{'project-default': item.primary !== true, 'project-primary': item.primary === true}">
+										<div class="shape" ng-if="item.primary">
+											<div class="shape-text">
+												top								
+											</div>
+										</div>
+										<div class="project-content">
+											<h3 class="lead mt-4">
+												{{ item.name }}
+											</h3>
+											<p class="mt-4">
+												{{ item.descr }}
+											</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div> 
+				</div> <!-- .container -->
+			</div> <!-- bg -->
+		</script>
+	</head>
+
+	<body> 
+		<ng-view>
+			
+		</ng-view>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+	</body>
+</html>

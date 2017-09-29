@@ -1,0 +1,282 @@
+/*#menu {
+	background: gray;
+}
+*/
+/*html, 
+body {
+	height: 100%;
+}
+
+@media print {    
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .view {
+    	width: 100vw !important;
+    }
+}
+
+@media screen {
+	.view {
+		position: absolute;
+		left: -999999px;
+		top: -999999px;
+	}
+}*/
+
+/* Fonts */
+
+/*html, 
+body {
+	font-family: 'Roboto', sans-serif;	
+}
+
+.font-thin { font-weight: 100 !important; }
+.font-light { font-weight: 300 !important; }
+.font-regular { font-weight: 400 !important; }
+
+#side-menu {
+	background-color: #0D1722;
+}
+
+#side-menu img#logo {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+#side-menu .menu-item {
+	height: 8.5%;
+	font-size: 1em; 
+	color: #C6CBD1;
+}
+
+#side-menu .menu-item:hover {
+	background-color: #242D37;
+}
+
+#side-menu .menu-item .selected {
+	background-color: #242D37;
+}
+
+#side-menu .menu-item .text-cell,
+#side-menu .menu-item .icon-cell {
+	position: relative;
+}
+
+#side-menu .menu-item .text-cell *,
+#side-menu .menu-item .icon-cell * {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#side-menu .menu-item .text-cell.disabled {
+	opacity: .3;
+}
+
+#side-menu .menu-item .icon-cell.disabled {
+	opacity: .6;
+}*/
+
+/* Tables fields */
+
+/*.conditional-field.good {color: green !important;}
+.conditional-field.danger {color: black !important;}
+.conditional-field.bad {color: red !important;}
+
+h1, h2, h3 {
+	margin: 0;
+}
+
+h2, h3 {
+	color: #828282;
+}
+
+h1 { font-weight: 400; }
+h2 { font-weight: 300; }
+h3 { font-weight: 300; }
+
+page {
+	position: relative;
+
+	width: 100%;
+	height: 100%;
+	display: block;
+
+	page-break-before: always; 
+}
+
+page h1 {
+	margin-bottom: 1rem;
+}
+*/
+/* Page: title */
+
+/*page#title {
+	text-align: center;
+	width: 100%;
+}
+
+page#title img {
+	width: 30vh;
+	margin-bottom: 2rem;
+	margin-top: 10rem;
+}
+
+page#title h1 {
+	margin-bottom: .5rem;
+}
+
+page#title #date {
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+}*/
+
+/* Page: pricing */
+
+/*page#pricing table {
+	width: 100%;
+	border: .02rem solid #CCCCCC;
+	border-collapse: collapse;
+}
+
+page#pricing #maj-detai td {
+	border-top: .02rem solid #CCCCCC;
+	border-bottom: .02rem solid #CCCCCC;
+}
+
+page#pricing .min-detail td:not(:first-child):not(:last-child),
+page#pricing .maj-detail td:not(:first-child):not(:last-child) {
+	border-right: .02rem solid #CCCCCC;	
+}
+
+page#pricing .min-detail td:not(:first-child),
+page#pricing .maj-detail td:not(:first-child) {
+	padding-left: .5rem;			
+}
+
+page#pricing .maj-detail td {
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .2rem;
+}
+
+page#pricing .min-detail td {
+	padding-bottom: .5rem;
+}
+
+.maj-detail {
+	font-size: 1em;
+}
+
+.min-detail {
+	font-size: .9em;
+	font-weight: 300 !important;
+}
+
+page#pricing table {
+	border: none;
+	border-bottom: .002rem solid #CCCCCC;
+}
+
+page#pricing > table {
+	margin-bottom: 1rem;
+	border: .06rem solid #CCCCCC;
+}
+
+page#pricing > table tr:last-child table {
+	border: none;
+}
+
+page#pricing #total-price {
+	width: 100%;
+	text-align: right;
+}*/
+
+/* Page: demands */
+
+/*page#demands .demand-item {
+	margin-bottom: 1.5rem;
+}
+*/
+/* Page: Timeline*/
+
+/*page#timeline h3 {
+	margin-bottom: .5rem;
+}
+
+.deadline-item .date {
+	color: #EB5757;
+}
+
+.deadline-item .description {
+	color: #BDBDBD;
+}
+
+page#timeline table td {
+	padding-right: 1rem;
+}
+*/
+/* Page: project team */
+
+/*page#project-team #team-members,
+page#project-team #always-online {
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+}
+
+page#project-team #team-members {
+	text-align: center;
+}
+
+page#project-team .member-item {
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+}
+
+page#project-team .member-item img {
+	width: 70%;
+}
+
+.criticality.high { color: red; }
+.criticality.middle { color: orange; }
+.criticality.low { color: green; }
+
+
+md-input-container {
+	margin-bottom: 0;
+	margin-top: 1rem;
+}
+
+h1, h2 {
+	font-weight: 300 !important;
+}
+
+h1 { font-size: 1.4em; }
+h2 { font-size: 1.1em; }
+
+md-content {
+	padding-left: .85rem;
+}
+
+section {
+    margin-top: 2rem;
+}
+
+subsection {
+	display: block;
+	margin-top: 1rem;
+}
+
+#generate button {
+	background-color: #D72638 !important;
+}
+
+::-moz-placeholder {
+  font-weight: 300 !important;		
+  font-family: 'Roboto', sans-serif !important;
+}*/
