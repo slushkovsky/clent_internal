@@ -1,22 +1,28 @@
-<div layout="row"> 
-	<md-input-container md-no-float class="md-block" flex="30">
-	    <input ng-model="modelName" placeholder="Project name">
-	</md-input-container>
+<editor layout="row">
+    <div layout="row">
+        <md-input-container flex="30">
+            <input ng-model="$parent.docName" placeholder="Название документа">
+        </md-input-container>
 
-	<md-input-container md-no-float class="md-block" flex="30">
-      <md-datepicker ng-model="modelDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-    </md-input-container>	
+        <md-input-container flex="30">
+            <input ng-model="$parent.projectName" placeholder="Название проекта">
+        </md-input-container>
 
-	<choose-file layout="row" flex="25" model-file="modelLogoSrc" placeholder="Logo file"></choose-file>    
-</div>
-<!-- 
-<page id="title"> 
-	<img src="{{ docData.logoSrc }}"> 
+        <md-input-container flex="30">
+            <md-datepicker ng-model="$parent.date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+        </md-input-container>
 
-	<h1 ng-bind-html="docData.projectName | unsafe"></h1>
-	<h2 ng-bing-html="docData.documentName | unsafe"></h2>
+        <choose-file layout="row" flex="25" model-file="$parent.logoSrc" placeholder="Logo file"></choose-file>
+    </div>
+</editor>
 
-	<div id="date">
-		{{ docData.date | date: 'dd.MM.yyyy'}}
-	</div>
-</page> -->
+<view> 
+    <img src="{{ $parent.logoSrc }}"> 
+
+    <h1>{{ $parent.projectName }}</h1>
+    <h2>{{ $parent.docName }}</h2>
+
+    <div id="date">
+        {{ $parent.date | date: 'dd.MM.yyyy'}}
+    </div>
+</view>

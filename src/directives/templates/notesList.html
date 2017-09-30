@@ -1,0 +1,78 @@
+<div layout="column">
+    <div layout="column" ng-repeat="item in items"> 
+        <div layout="row">
+            <md-input-container class="md-block" flex="5"> 
+                <input value="{{ $index + 1 }}." disabled>    
+            </md-input-container>
+
+            <md-input-container class="md-block" flex="30" ng-if="fieldName !== undefined"> 
+                <input ng-model="item.name" placeholder="Название">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex="20" ng-if="fieldCategory !== undefined"> 
+                <md-select ng-model="item.category" placeholder="{{ fieldCategory.length == 0 ? 'Категория' : fieldCategory }}">
+                    <md-option value="{{ category }}" ng-repeat="category in fieldCategoryVariants">
+                        {{ category }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex="20" ng-if="fieldLevel !== undefied"> 
+                <md-select ng-model="item.level" placeholder="{{ fieldLevel.length == 0 ? 'Уровень' : fieldLevel }}">
+                    <md-option value="{{ level }}" ng-repeat="level in fieldLevelVariants">
+                        {{ level }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-button flex="5" ng-click="items.splice($index, 1);"><md-icon>close</md-icon></md-button>
+        </div>
+
+        <div layout="row"> 
+            <md-input-container md-no-float class="md-block" flex="30" flex-offset="5" style="margin-top: 0;">
+                <textarea ng-model="item.content" rows="3" md-select-on-focus placeholder="Описание"></textarea>
+            </md-input-container>
+
+            <choose-file layout="row" flex="20" file-model="item.imgSrc">
+                <input id="fileInput" type="file" class="ng-hide">
+                <md-input-container flex class="md-block">
+                    <input type="text" placeholder="Screenshot" ng-model="_fileName" disabled>
+                    <div class="hint">Select your file</div>
+                </md-input-container>
+                <div>
+                    <md-button id="uploadButton" class="md-fab md-mini">
+                        <md-icon class="material-icons">attach_file</md-icon>
+                    </md-button>
+                </div>
+            </choose-file>  
+        </div>
+    </div>
+</div>
+<md-button class="md-raised" ng-click="items.push({})">Add</md-button>
+
+
+
+<!-- <div layout="column">
+    <div layout="column" ng-repeat="enhancement in model"> 
+        <div layout="row">
+            <md-input-container class="md-block" flex="5"> 
+                <input value="{{ $index + 1 }}." disabled>    
+            </md-input-container>
+
+            <md-input-container class="md-block" flex="30"> 
+                <input ng-model="enhancement.title" placeholder="Название">
+            </md-input-container>
+
+            <md-button flex="5" ng-click="model.splice($index, 1);"><md-icon>close</md-icon></md-button>
+        </div>
+
+        <div layout="row"> 
+            <md-input-container md-no-float class="md-block" flex="30" flex-offset="5" style="margin-top: 0;">
+                <textarea ng-model="enhancement.content" rows="3" md-select-on-focus placeholder="Описание"></textarea>
+            </md-input-container>
+
+            <choose-file layout="row" flex="20" file-model="enhancement.imgSrc" placeholder="Screenshot"></choose-file>  
+        </div>
+    </div>
+</div>
+<md-button class="md-raised" ng-click="model.push({})">Add</md-button> -->

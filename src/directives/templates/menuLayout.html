@@ -3,6 +3,7 @@
     md-is-locked-open="$mdMedia('gt-md')" 
     flex-gt-md="20" 
     md-component-id="left"
+    ng-if="$root.mode === 'edit'"
     style="background-color: {{ brand.color }};"/>
     
     <md-toolbar>
@@ -32,5 +33,5 @@
         <md-icon>menu</md-icon>
     </md-button>
 
-    <ng-transclude></ng-transclude>
+    <ng-transclude id="view"></ng-transclude>
 </div>

@@ -1,69 +1,69 @@
 menu-layout {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	min-height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
 
-	display: flex;
+    display: flex;
 }
 
 menu-layout md-sidenav {
-	min-height: 100%;
+    min-height: 100%;
 }
 
 menu-layout md-toolbar {
-	display: block;
-	width: 100%;
-	padding: 2rem 0;
+    display: block;
+    width: 100%;
+    padding: 2rem 0;
 
-	background-color: inherit !important;
-	text-align: center;
+    background-color: inherit !important;
+    text-align: center;
 }
 
 menu-layout md-toolbar #logo {
-	display: inline-block;
-	width: 50%;
+    display: inline-block;
+    width: 50%;
 }
 
 menu-layout md-content {
-	padding: 2rem .75rem !important;
+    padding: 2rem .75rem !important;
 
-	background-color: inherit;
+    background-color: inherit;
 }
 
 /* Item */
 
 menu-item {
-	height: 2rem;
-	position: relative;
+    height: 2rem;
+    position: relative;
 }
 
 menu-item img {
-	height: 100%;
-	min-width: 3rem;
+    height: 100%;
+    min-width: 3rem;
 }
 
 menu-item span {
-	position: absolute;
-	top: calc(50% - .5em);
+    position: absolute;
+    top: calc(50% - .5em);
 
-	margin: 0 .75rem;
+    margin: 0 .75rem;
 
-	color: #fff;
-	font-weight: 100;
+    color: #fff;
+    font-weight: 100;
 }
 
 /* Divider */
 
 menu-layout md-divider {
-	padding: 0 !important;
-	margin: 1rem .8rem;
-	border: .25px solid #fff;
-	opacity: .05;
+    padding: 0 !important;
+    margin: 1rem .8rem;
+    border: .25px solid #fff;
+    opacity: .05;
 }
 
 /* View area */
 
-ng-transclude {
-	padding: 0 1.25rem;
+menu-layout #view {
+    padding: 0 4rem;
 }

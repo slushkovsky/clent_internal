@@ -1,4 +1,4 @@
-<md-checkbox ng-model="enabled" aria-label="Section enabled checkbox"></md-checkbox> 
-<h1>{{ title }}</h1>
+<md-checkbox ng-model="enabled" aria-label="Section enabled checkbox" ng-show="$root.mode === 'edit'"></md-checkbox> 
+<h1 ng-show="$root.mode == 'edit' || (titleOnView === undefined ? true : (titleOnView == true.toString()))">{{ title }}</h1>
 
-<ng-transclude ng-show="enabled === true"></ng-transclude>
+<ng-transclude ng-show="enabled === true" id="content"></ng-transclude>
