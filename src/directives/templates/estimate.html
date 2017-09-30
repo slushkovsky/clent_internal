@@ -1,113 +1,117 @@
-<subsection> 
-	<h2>Ставки</h2>
+<editor>
+    <subsection> 
+        <h2>Ставки</h2>
 
-	<div layout="column">
-		<div layout="row" ng-repeat="item in rates">
-			<md-input-container class="md-block" flex="20">
-				<input ng-model="item.title" placeholder="Должность">	
-			</md-input-container>				
+        <div layout="column">
+            <div layout="row" ng-repeat="item in $parent.rates">
+                <md-input-container class="md-block" flex="30">
+                    <input ng-model="item.title" placeholder="Должность">    
+                </md-input-container>
 
-			<md-input-container class="md-block" flex="10">
-				<input ng-model="item.rate" type="number" step="50" min="50" max="4999" placeholder="Ставка (р/ч)">	
-			</md-input-container>	
+                <md-input-container class="md-block" flex="20">
+                    <input ng-model="item.rate" type="number" step="50" min="50" max="4999" placeholder="Ставка (р/ч)">    
+                </md-input-container>
 
-			<md-button flex="5" ng-click="rates.splice($index, 1);"><md-icon>close</md-icon></md-button>
-	    </div>
-    </div>
-	<md-button class="md-raised" ng-click="rates.push({})">Add</md-button>
-</subsection>
+                <md-button flex="5" ng-click="$parent.rates.splice($index, 1);"><md-icon>close</md-icon></md-button>
+            </div>
+        </div>
+        <md-button class="md-raised" ng-click="$parent.rates.push({})">Add</md-button>
+    </subsection>
 
-<subsection> 
-	<h2>Этапы</h2>
-	<span class="font-thin">Общая стоимость: </span><span class="font-light">{{ estimate.totalPrice | beautyNumber }} руб.</span>
+    <subsection> 
+        <h2>Этапы</h2>
+        <span class="font-thin">Общая стоимость: </span><span class="font-light">{{ $parent.estimate.totalPrice | beautyNumber }} руб.</span>
 
-	<div layout="column" style="margin-top: 1.5rem;">
-		<div ng-repeat="step in estimate.details"> 
-			<div layout="row">
-				<md-input-container class="md-block" flex="5"> 
-					<input value="{{ $index + 1 }}." disabled>
-				</md-input-container>
+        <div layout="column" style="margin-top: 1.5rem;">
+            <div ng-repeat="step in $parent.estimate.details"> 
+                <div layout="row">
+                    <md-input-container class="md-block" flex="5"> 
+                        <input value="{{ $index + 1 }}." disabled>
+                    </md-input-container>
 
-				<md-input-container class="md-block" flex="30"> 
-					<input ng-model="step.title" placeholder="Название">
-				</md-input-container>
+                    <md-input-container class="md-block" flex="30"> 
+                        <input ng-model="step.title" placeholder="Название">
+                    </md-input-container>
 
-				<md-input-container flex="10"> 
-					<input value="{{ step.totalEstimate }}" placeholder="Оценка" disabled>
-				</md-input-container>
+                    <md-input-container flex="10"> 
+                        <input value="{{ step.totalEstimate }}" placeholder="Оценка" disabled>
+                    </md-input-container>
 
-				<md-input-container flex="10"> 
-					<input value="{{ step.totalPrice | beautyNumber }}" placeholder="Стоимость" disabled>
-				</md-input-container>
+                    <md-input-container flex="10"> 
+                        <input value="{{ step.totalPrice | beautyNumber }}" placeholder="Стоимость" disabled>
+                    </md-input-container>
 
-				<md-button flex="5" ng-click="estimate.details.splice($index, 1);"><md-icon>close</md-icon></md-button>
-			</div>
+                    <md-button flex="5" ng-click="$parent.estimate.details.splice($index, 1);"><md-icon>close</md-icon></md-button>
+                </div>
 
-			<div layout="column">
-				<div layout="row" ng-repeat="sub in step.substeps">
-					<md-input-container class="md-block" flex="5" flex-offset="5"> 
-						<input value="{{ $parent.$index + 1 }}.{{ $index + 1 }}." disabled>
-					</md-input-container>
+                <div layout="column">
+                    <div layout="row" ng-repeat="sub in step.substeps">
+                        <md-input-container class="md-block" flex="5" flex-offset="5"> 
+                            <input value="{{ $parent.$index + 1 }}.{{ $index + 1 }}." disabled>
+                        </md-input-container>
 
-					<md-input-container md-no-float class="md-block" flex="30">
-						<input ng-model="sub.title" placeholder="Название">
-					</md-input-container>
+                        <md-input-container md-no-float class="md-block" flex="30">
+                            <input ng-model="sub.title" placeholder="Название">
+                        </md-input-container>
 
-					<md-input-container md-no-float class="md-block" flex="10"> 
-						<input ng-model="sub.estimate" placeholder="Время (ч.)" type="number" step="1" min="1" max="4999" ng-change="sub.price=sub.specialist.rate*sub.estimate; updTotalPrices()">
-					</md-input-container>
+                        <md-input-container md-no-float class="md-block" flex="15"> 
+                            <input ng-model="sub.estimate" placeholder="Время (ч.)" type="number" step="1" min="1" max="4999" ng-change="sub.price=sub.specialist.rate*sub.estimate; updTotalPrices()">
+                        </md-input-container>
 
-					<md-input-container class="md-block" flex="20">
-			            <label>Сотрудник</label>
-						<md-select ng-model="sub.specialist" ng-change="sub.price=sub.specialist.rate*sub.estimate; updTotalPrices();">
-							<md-option ng-repeat="item in rates" ng-value="item">
-								{{ item.title }} - ({{ item.rate }} р/ч)
-							</md-option>
-						</md-select>
-		          	</md-input-container>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Сотрудник</label>
+                            <md-select ng-model="sub.specialist" ng-change="sub.price=sub.specialist.rate*sub.estimate; updTotalPrices();">
+                                <md-option ng-repeat="item in rates" ng-value="item">
+                                    {{ item.title }} - ({{ item.rate }} р/ч)
+                                </md-option>
+                            </md-select>
+                          </md-input-container>
 
-		          	<md-input-container class="md-block" flex="10">
-        				<label>Стоимость</label>
-        				<input ng-model="sub.price" value="sub.price | beautyNumber" ng-readonly="true" disabled>
-      				</md-input-container>
+                          <md-input-container class="md-block" flex="10">
+                            <label>Стоимость</label>
+                            <input ng-model="sub.price" value="sub.price | beautyNumber" ng-readonly="true" disabled>
+                          </md-input-container>
 
-					<md-button flex="5" ng-click="step.substeps.splice($index, 1);"><md-icon>close</md-icon></md-button>
-				</div>
-	
-				<div layout="row"> 
-					<md-button class="md-raised" ng-click="step.substeps.push({})" flex="5" flex-offset="5">Add</md-button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<md-button class="md-raised" ng-click="estimate.details.push({substeps:[{}]})">Add</md-button>
-</subsection>
+                        <md-button flex="5" ng-click="step.substeps.splice($index, 1);"><md-icon>close</md-icon></md-button>
+                    </div>
+        
+                    <div layout="row"> 
+                        <md-button class="md-raised" ng-click="step.substeps.push({})" flex="5" flex-offset="5">Add</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-button class="md-raised" ng-click="$parent.estimate.details.push({substeps:[{}]})">Add</md-button>
+    </subsection>
+</editor> 
 
-<!-- <table> 
-	<tr class="maj-detail" ng-repeat="detail in estimate">
-		<td> 
-			<table> 
-				<thead> 
-					<tr>
-						<td><b>{{ $index + 1 }}</b></td>  
-						<td><b>{{ detail.title }}</b></td>
-						<td><b>{{ detail.totalEstimate }}</b> часов</td>
-						<td></td>
-						<td><b>{{ detail.totalPrice.toLocaleString() }}</b> рублей</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="min-detail" ng-repeat="subitem in detail.substeps">
-						<td style="width: 2rem;">{{ $parent.$index + 1 }}.{{ $index + 1 }}</td>
-						<td style="width: 35rem;">{{ subitem.title }}</td>
-						<td style="width: 7rem;">{{ subitem.estimate }} часов</td>
-						<td style="width: 14rem;">{{ subitem.specialist.title }}</td>
-						<td style="width: 10rem;">{{ subitem.price.toLocaleString() }} рублей</td>
-					</tr> 
-				</tbody>
-			</table>
-		</td>
-	</tr> 
-</table>
+<view>
+    <table> 
+        <tr class="maj-detail" ng-repeat="detail in $parent.estimate.details">
+            <td> 
+                <table> 
+                    <thead> 
+                        <tr>
+                            <td><b>{{ $index + 1 }}</b></td>  
+                            <td><b>{{ detail.title }}</b></td>
+                            <td><b>{{ detail.totalEstimate }}</b> часов</td>
+                            <td></td>
+                            <td><b>{{ detail.totalPrice.toLocaleString() }}</b> рублей</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="min-detail" ng-repeat="subitem in detail.substeps">
+                            <td style="width: 2rem;">{{ $parent.$index + 1 }}.{{ $index + 1 }}</td>
+                            <td style="width: 35rem;">{{ subitem.title }}</td>
+                            <td style="width: 7rem;">{{ subitem.estimate }} часов</td>
+                            <td style="width: 14rem;">{{ subitem.specialist.title }}</td>
+                            <td style="width: 10rem;">{{ subitem.price.toLocaleString() }} рублей</td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </td>
+        </tr> 
+    </table>
 
-<div id="total-price">Общая стоимость работ составит: {{ estimate.totalPrice.toLocaleString() }} рублей</div> -->
+    <div id="total-price">Общая стоимость работ составит: {{ $parent.estimate.totalPrice.toLocaleString() }} рублей</div>
+</view>
